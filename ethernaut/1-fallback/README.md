@@ -1,5 +1,7 @@
 # Ethernaut - Fallback
 
+A full scripted solution is provided in index.js.
+
 ## Objectives
 
 The goal of this level is to:
