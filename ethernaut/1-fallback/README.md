@@ -21,7 +21,7 @@ function contribute() public payable {
 }
 ```
 
-The second section of the code in which the contract owner may be reassigned is found within the receieve ("Recieve Ether") function:
+The second section of the code in which the contract owner may be reassigned is found within the receieve ("Receive Ether") function:
 
 ```solidity
 receive() external payable {
@@ -30,7 +30,7 @@ receive() external payable {
 }
 ```
 
-The receive function checks first that the value of the transaction is non-zero, and that the contributions of the sender address are non-zero, before assigning the owner to msg.sender. This means we may pass this require conditional by first sending a small transaction via the contribute function (< 0.001 ether), then by sending a transaction with any non-zero value to the contract address (with empty calldata to trigger the recieve function).
+The receive function checks first that the value of the transaction is non-zero, and that the contributions of the sender address are non-zero, before assigning the owner to msg.sender. This means we may pass this require conditional by first sending a small transaction via the contribute function (< 0.001 ether), then by sending a transaction with any non-zero value to the contract address (with empty calldata to trigger the receive function).
 
 ## Reducing Balance to Zero
 
