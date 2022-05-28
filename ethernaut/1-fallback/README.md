@@ -23,7 +23,7 @@ function contribute() public payable {
 
 The second section of the code in which the contract owner may be reassigned is found within the retrieve function:
 
-```
+```solidity
 receive() external payable {
     require(msg.value > 0 && contributions[msg.sender] > 0);
     owner = msg.sender;
@@ -36,7 +36,7 @@ The receive ("Recieve Ether") function checks first that the value of the transa
 
 Once the owner address is set to the player's address, we may call the withdraw function directly as the require condition of the onlyOwner modifier is now satisfied.
 
-```
+```solidity
 function withdraw() public onlyOwner {
     owner.transfer(address(this).balance);
 }
