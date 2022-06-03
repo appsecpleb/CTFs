@@ -21,7 +21,7 @@ async function main() {
   console.log(`Contract owner is initially: ${await contract.owner()}`);
 
   // Call contract's 'Fal1out' function
-  console.log("Calling contract's 'Fallout' function...");
+  console.log("Calling contract's 'Fal1out' function...");
   const contractFal1out = await contract.Fal1out();
   contractFal1out.wait(1);
 
