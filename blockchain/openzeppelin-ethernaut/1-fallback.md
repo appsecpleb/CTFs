@@ -107,7 +107,7 @@ async function setup(contractName) {
 async function main() {
   // Get basic Ethers objects needed to interact with the blockchain and contract
   const { 
-  provider,
+    provider,
     playerWallet, 
     playerWalletSigner, 
     contract: fallbackContract 
