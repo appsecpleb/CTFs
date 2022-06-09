@@ -80,8 +80,8 @@ const fs = require('fs')
 require('dotenv').config({ path: './.env' })
 
 /**
- * Initialize the basic Ethers objects needed to interact with the blockchain
- * and contract.
+ * Initialize Ethers objects needed to interact with the blockchain and 
+ * contract.
  */
 async function setup(contractName) {
   // Create provider - a read-only abstraction to access blockchain data
@@ -105,7 +105,7 @@ async function setup(contractName) {
  * Run contract exploit.
  */
 async function main() {
-  // Get basic Ethers objects needed to interact with the blockchain and contract
+  // Get Ethers objects needed to interact with the blockchain and contract
   const {
     provider,
     playerWallet,

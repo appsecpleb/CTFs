@@ -82,9 +82,7 @@ async function main() {
   const { playerWallet, contract: falloutContract } = setup('Fallout')
 
   // Check Fallout contract's owner
-  console.log(
-    `Fallout contract owner is initially: ${await falloutContract.owner()}`
-  )
+  console.log(`Fallout contract owner is initially: ${await falloutContract.owner()}`)
 
   // Call Fallout contract's 'Fal1out' function
   console.log("Calling Fallout contract's 'Fal1out' function...")
@@ -93,9 +91,7 @@ async function main() {
   // Check Fallout contract's new owner
   const falloutContractOwner = await falloutContract.owner()
   console.log(`Contract owner is now: ${falloutContractOwner}`)
-  console.log(
-    `Contract owner is player: ${falloutContractOwner === playerWallet.address}`
-  )
+  console.log(`Contract owner is player: ${falloutContractOwner === playerWallet.address}`)
 }
 
 main()
