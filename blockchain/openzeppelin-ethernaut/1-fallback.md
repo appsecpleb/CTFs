@@ -80,8 +80,7 @@ const fs = require('fs')
 require('dotenv').config({ path: './.env' })
 
 /**
- * Initialize Ethers objects needed to interact with the blockchain and 
- * contract.
+ * Initialize Ethers objects needed to interact with the blockchain and contract.
  */
 async function setup(contractName) {
   // Create provider - a read-only abstraction to access blockchain data
