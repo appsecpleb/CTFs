@@ -80,7 +80,7 @@ const fs = require('fs')
 require('dotenv').config({ path: './.env' })
 
 /**
- * Initialize the basic Ethers objects needed to interact with the blockchain 
+ * Initialize the basic Ethers objects needed to interact with the blockchain
  * and contract.
  */
 async function setup(contractName) {
@@ -106,34 +106,42 @@ async function setup(contractName) {
  */
 async function main() {
   // Get basic Ethers objects needed to interact with the blockchain and contract
-  const { 
+  const {
     provider,
-    playerWallet, 
-    playerWalletSigner, 
-    contract: fallbackContract 
+    playerWallet,
+    playerWalletSigner,
+    contract: fallbackContract,
   } = setup('Fallback')
-  
+
   // Contribute 0.0001 ether via Fallback contract's 'contribute' function
   const contributionValue = ethers.utils.parseEther('0.0001')
-  console.log(`Sending Fallback 'contribute' ${contributionValue.toString()}...`)
-  await fallbackContract.contribute({
-    value: contributionValue
-  }).wait(1)
+  console.log(
+    `Sending Fallback 'contribute' ${contributionValue.toString()}...`
+  )
+  await fallbackContract
+    .contribute({
+      value: contributionValue,
+    })
+    .wait(1)
 
   // Confirm contribution via Fallback contract's 'getContribution' function
   console.log(
-    `Current contribution: ${await fallbackContract.getContribution().toString()}`
+    `Current contribution: ${await fallbackContract
+      .getContribution()
+      .toString()}`
   )
 
   // Send ether to Fallback contract address ('receive' function)
   console.log(
     `Sending ${contributionValue.toString()} to Fallback contract address...`
   )
-  await playerWalletSigner.sendTransaction({
-    to: process.env.CONTRACT_ADDRESS,
-    value: contributionValue,
-    gasPrice: 20000000000,
-  }).wait(1)
+  await playerWalletSigner
+    .sendTransaction({
+      to: process.env.CONTRACT_ADDRESS,
+      value: contributionValue,
+      gasPrice: 20000000000,
+    })
+    .wait(1)
 
   // Check current Fallback contract 'owner'
   const fallbackContractOwner = await fallbackContract.owner()
